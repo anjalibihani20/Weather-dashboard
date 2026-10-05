@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Search the current weather for any city.">
+  <title>Weather Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <h1><span aria-hidden="true">🌤️</span> Weather Dashboard</h1>
+      <p class="tagline">Live weather, wherever you are.</p>
+    </header>
+
+    <!-- A form makes the Search button AND the Enter key work -->
+    <form id="search-form" class="search-box">
+      <div class="search-field">
+        <span aria-hidden="true">🔍</span>
+        <label for="city-input" class="visually-hidden">City name</label>
+        <input type="text" id="city-input" placeholder="Search for a city..."
+               autocomplete="off" aria-describedby="error">
+      </div>
+      <button type="submit" id="search-btn">Search</button>
+    </form>
+
+    <!-- Shown when the page first loads -->
+    <div id="empty-state" class="panel empty-state">
+      <p class="empty-icon" aria-hidden="true">🌍</p>
+      <p>Search for a city to see its current weather.</p>
+    </div>
+
+    <!-- Screen readers announce these messages automatically -->
+    <div id="loading" class="panel loading hidden" role="status">
+      <span class="spinner" aria-hidden="true"></span>
+      <span>Fetching weather...</span>
+    </div>
+
+    <div id="error" class="error hidden" role="alert">
+      <span aria-hidden="true">⚠️</span>
+      <p id="error-text"></p>
+    </div>
+
+    <!-- Weather result card (filled by JavaScript) -->
+    <div aria-live="polite">
+      <section id="weather-card" class="panel card hidden" aria-labelledby="city-name">
+        <h2 id="city-name"></h2>
+        <p id="date" class="date"></p>
+
+        <div class="main-reading">
+          <div>
+            <p id="temperature" class="temperature"></p>
+            <p id="condition" class="condition"></p>
+          </div>
+          <p id="icon" class="icon" aria-hidden="true"></p>
+        </div>
+
+        <dl class="details">
+          <div>
+            <dt><span aria-hidden="true">🌡️</span> Feels like</dt>
+            <dd id="feels-like"></dd>
+          </div>
+          <div>
+            <dt><span aria-hidden="true">💧</span> Humidity</dt>
+            <dd id="humidity"></dd>
+          </div>
+          <div>
+            <dt><span aria-hidden="true">💨</span> Wind Speed</dt>
+            <dd id="wind"></dd>
+          </div>
+        </dl>
+      </section>
+    </div>
+
+    <footer class="footer">
+      Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
